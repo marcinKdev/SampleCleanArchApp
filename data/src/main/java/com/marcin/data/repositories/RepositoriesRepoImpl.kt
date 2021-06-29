@@ -15,6 +15,8 @@ class RepositoriesRepoImpl @Inject constructor(
                         Single.error(Throwable())
                   } else {
                         Single.just(it.items.mapNotNull { repositoryDto -> repositoryDto.map() })
+                  }.onErrorResumeNext {
+                        Single.error(it)
                   }
             }
       }

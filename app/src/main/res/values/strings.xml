@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SampleCleanArch</string>
+    <string name="buttonLabel">TRY AGAIN</string>
 </resources>

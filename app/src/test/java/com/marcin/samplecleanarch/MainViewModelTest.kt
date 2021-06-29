@@ -68,6 +68,8 @@ class MainViewModelTest {
 
       @Test
       fun `The first and the second page of repositories is served to the VM correct`() {
+            // fetching the 1st page
+
             whenever(usecase.execute()).thenReturn(Single.just(testRepos))
             whenever(usecase.execute(2)).thenReturn(Single.just(testReposSecondPage))
 
