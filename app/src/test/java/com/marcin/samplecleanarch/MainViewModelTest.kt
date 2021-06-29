@@ -89,4 +89,27 @@ class MainViewModelTest {
             Mockito.verify(testObserver).onChanged(MainScreenState(repositories = testRepos, loading = true))
             Mockito.verify(testObserver).onChanged(MainScreenState(repositories = testRepos + testReposSecondPage))
       }
+
+      @Test
+      fun `An error state is served to the VM correct`() {
+            val error = Throwable()
+
+            whenever(usecase.execute()).thenReturn(Single.error(error))
+
+            viewModel.fetchRepos()
+
+            Mockito.verify(testObserver).onChanged(MainScreenState(loading = true))
+            Mockito.verify(testObserver).onChanged(MainScreenState(error = error))
+
+            // all is back to normal
+
+            reset(testObserver)
+
+            whenever(usecase.execute()).thenReturn(Single.just(testRepos))
+
+            viewModel.fetchRepos()
+
+            Mockito.verify(testObserver).onChanged(MainScreenState(loading = true))
+            Mockito.verify(testObserver).onChanged(MainScreenState(repositories = testRepos))
+      }
 }
