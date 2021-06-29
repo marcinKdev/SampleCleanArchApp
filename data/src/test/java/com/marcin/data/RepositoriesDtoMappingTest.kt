@@ -8,7 +8,7 @@ import org.junit.Test
 
 class RepositoriesDtoMappingTest {
 
-    private val expectedRepositories = listOf(RepositoriesTestData.repo1, RepositoriesTestData.repo2, RepositoriesTestData.repo3)
+    private val expectedRepositories = listOf(com.marcin.testdata.RepositoriesTestData.repo1, com.marcin.testdata.RepositoriesTestData.repo2, com.marcin.testdata.RepositoriesTestData.repo3)
 
     @Test
     fun `Repositories are mapped to domain objects`() {

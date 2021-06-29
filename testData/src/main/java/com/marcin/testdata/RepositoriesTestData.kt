@@ -1,4 +1,4 @@
-package com.marcin.data
+package com.marcin.testdata
 
 import com.marcin.domain.Repository
 

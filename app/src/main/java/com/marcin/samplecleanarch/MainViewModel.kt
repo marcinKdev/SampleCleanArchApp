@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val getRepositioriesUseCase: GetRepositioriesUseCase) : ViewModel() {
 
-            private var page = 1
+            internal var page = 1
 
             private val _repositories = MutableLiveData<MainScreenState>()
             val repositories: LiveData<MainScreenState>
