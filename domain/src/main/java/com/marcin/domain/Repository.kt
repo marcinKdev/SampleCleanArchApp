@@ -1,3 +1,3 @@
 package com.marcin.domain
 
-data class Repository(val id: Int, val full_name: String, val description: String)
+data class Repository(val id: Int, val name: String, val fullName: String, val description: String?)

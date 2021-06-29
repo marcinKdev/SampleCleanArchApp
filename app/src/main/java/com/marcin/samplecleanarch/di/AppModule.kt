@@ -1,6 +1,7 @@
 package com.marcin.samplecleanarch.di
 
 import com.google.gson.GsonBuilder
+import com.marcin.data.BASE_URL
 import com.marcin.data.GithubApiInterface
 import com.marcin.data.repositories.RepositoriesRepoImpl
 import com.marcin.domain.RepositoriesRepo
@@ -30,10 +31,8 @@ abstract class AppModule {
             @ContributesAndroidInjector
             abstract fun contributeMainActivityInjector() : MainActivity
 
-            @Module
             companion object {
 
-                        @JvmStatic
                         @Provides
                         @Singleton
                         fun provideOkHttpClient(): OkHttpClient {
@@ -43,19 +42,17 @@ abstract class AppModule {
                                                 .build()
                         }
 
-                        @JvmStatic
                         @Provides
                         @Singleton
                         fun provideRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
                                     return Retrofit.Builder()
-                                                .baseUrl("https://api.github.com/")
+                                                .baseUrl(BASE_URL)
                                                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                                                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                                                 .client(okHttpClient)
                                                 .build()
                         }
 
-                        @JvmStatic
                         @Provides
                         @Singleton
                         fun provideApiInterface(retrofit: Retrofit) = retrofit.create(GithubApiInterface::class.java)

@@ -124,9 +124,9 @@
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
       <option name="RIGHT_MARGIN" value="130" />
       <indentOptions>
-        <option name="INDENT_SIZE" value="12" />
-        <option name="CONTINUATION_INDENT_SIZE" value="12" />
-        <option name="TAB_SIZE" value="12" />
+        <option name="INDENT_SIZE" value="6" />
+        <option name="CONTINUATION_INDENT_SIZE" value="6" />
+        <option name="TAB_SIZE" value="6" />
       </indentOptions>
     </codeStyleSettings>
   </code_scheme>

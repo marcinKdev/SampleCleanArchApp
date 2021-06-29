@@ -14,7 +14,7 @@ class RepositoriesAdapter : ListAdapter<Repository, RepositoryViewHolder>(DIFFUT
 
             companion object {
                         val DIFFUTIL = object : DiffUtil.ItemCallback<Repository>() {
-                                    override fun areContentsTheSame(oldItem: Repository, newItem: Repository) = oldItem.full_name == newItem.full_name
+                                    override fun areContentsTheSame(oldItem: Repository, newItem: Repository) = oldItem.fullName == newItem.fullName
                                     override fun areItemsTheSame(oldItem: Repository, newItem: Repository) = oldItem.id == newItem.id
                         }
             }
@@ -35,7 +35,7 @@ class RepositoryViewHolder(private val itemView: View) : RecyclerView.ViewHolder
                         val repoName = itemView.findViewById<TextView>(R.id.repositoryName)
                         val repoDesc = itemView.findViewById<TextView>(R.id.repositoryDesc)
 
-                        repoName.text = repository.full_name
+                        repoName.text = repository.fullName
                         repoDesc.text = repository.description
             }
 
