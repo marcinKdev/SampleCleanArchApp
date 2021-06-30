@@ -27,7 +27,7 @@ class RepositoriesAdapter : ListAdapter<Repository, RepositoryViewHolder>(DIFFUT
       }
 }
 
-class RepositoryViewHolder(private val viewholderRepositoryBinding: ViewholderRepositoryBinding) :
+class RepositoryViewHolder(internal val viewholderRepositoryBinding: ViewholderRepositoryBinding) :
       RecyclerView.ViewHolder(viewholderRepositoryBinding.root) {
 
       fun bind(repository: Repository) {

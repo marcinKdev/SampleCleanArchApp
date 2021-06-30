@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
       val repositoriesAdapter = RepositoriesAdapter()
 
-      private lateinit var binding: ActivityMainBinding
+      internal lateinit var binding: ActivityMainBinding
 
       override fun onCreate(savedInstanceState: Bundle?) {
             AndroidInjection.inject(this)
@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
 
             viewModel = ViewModelProvider(this, vmFactory).get(MainViewModel::class.java)
 
-            viewModel.repositories.observe(this, {
-                  renderRepositories(it)
+            viewModel.state.observe(this, {
+                  renderState(it)
             })
 
             viewModel.fetchRepos()
@@ -53,10 +53,10 @@ class MainActivity : AppCompatActivity() {
             })
       }
 
-      private fun renderRepositories(state: MainScreenState) {
+      internal fun renderState(state: MainScreenState) {
             binding.progress.isVisible = state.loading || (state.repositories.isEmpty() && state.error == null)
             binding.tryAgainButton.isVisible = state.error != null
 
-            repositoriesAdapter.submitList(state.repositories)
+            if (state.repositories.isNotEmpty()) { repositoriesAdapter.submitList(state.repositories) }
       }
 }

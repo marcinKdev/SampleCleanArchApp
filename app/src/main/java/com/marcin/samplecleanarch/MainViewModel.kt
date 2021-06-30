@@ -11,33 +11,33 @@ class MainViewModel @Inject constructor(private val getRepositioriesUseCase: Get
 
       internal var page = 1
 
-      private val _repositories = MutableLiveData<MainScreenState>()
-      val repositories: LiveData<MainScreenState>
-            get() = _repositories
+      private val _state = MutableLiveData<MainScreenState>()
+      val state: LiveData<MainScreenState>
+            get() = _state
 
       fun fetchRepos() {
-            val currentRepos = _repositories.value?.repositories ?: emptyList()
+            val currentRepos = _state.value?.repositories ?: emptyList()
 
-            _repositories.value = MainScreenState(repositories = currentRepos, loading = true)
+            _state.value = MainScreenState(repositories = currentRepos, loading = true)
 
             getRepositioriesUseCase.execute()
                   .subscribe(
-                        { _repositories.value = MainScreenState(repositories = it) },
-                        { _repositories.value = MainScreenState(error = it) }
+                        { _state.value = MainScreenState(repositories = it) },
+                        { _state.value = MainScreenState(error = it) }
                   )
       }
 
       fun fetchReposFurtherPage() {
             page++
 
-            val currentRepos = _repositories.value?.repositories ?: emptyList()
+            val currentRepos = _state.value?.repositories ?: emptyList()
 
-            _repositories.value = MainScreenState(repositories = currentRepos, loading = true)
+            _state.value = MainScreenState(repositories = currentRepos, loading = true)
 
             getRepositioriesUseCase.execute(page)
                   .subscribe(
-                        { _repositories.value = MainScreenState(repositories = currentRepos + it) },
-                        { _repositories.value = MainScreenState(error = it) }
+                        { _state.value = MainScreenState(repositories = currentRepos + it) },
+                        { _state.value = MainScreenState(error = it) }
                   )
       }
 

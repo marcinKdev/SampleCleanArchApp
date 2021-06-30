@@ -44,7 +44,7 @@ class MainViewModelTest {
             whenever(usecase.execute()).thenReturn(Single.just(listOf()))
 
             viewModel = MainViewModel(usecase)
-            viewModel.repositories.observeForever(testObserver)
+            viewModel.state.observeForever(testObserver)
 
       }
 
