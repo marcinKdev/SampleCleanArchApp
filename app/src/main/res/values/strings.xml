@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SampleCleanArch</string>
+    <string name="app_name">DiscipleMedia</string>
     <string name="buttonLabel">TRY AGAIN</string>
     <string name="repository_name">Repository name:</string>
     <string name="repository_description">Repository description:</string>
