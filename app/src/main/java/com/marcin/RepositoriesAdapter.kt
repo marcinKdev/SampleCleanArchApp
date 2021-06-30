@@ -1,14 +1,12 @@
 package com.marcin
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.marcin.domain.Repository
-import com.marcin.samplecleanarch.R
+import com.marcin.samplecleanarch.databinding.ViewholderRepositoryBinding
 
 class RepositoriesAdapter : ListAdapter<Repository, RepositoryViewHolder>(DIFFUTIL) {
 
@@ -21,7 +19,7 @@ class RepositoriesAdapter : ListAdapter<Repository, RepositoryViewHolder>(DIFFUT
 
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            return RepositoryViewHolder(layoutInflater.inflate(R.layout.viewholder_repository, parent, false))
+            return RepositoryViewHolder(ViewholderRepositoryBinding.inflate(layoutInflater, parent, false))
       }
 
       override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
@@ -29,14 +27,12 @@ class RepositoriesAdapter : ListAdapter<Repository, RepositoryViewHolder>(DIFFUT
       }
 }
 
-class RepositoryViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+class RepositoryViewHolder(private val viewholderRepositoryBinding: ViewholderRepositoryBinding) :
+      RecyclerView.ViewHolder(viewholderRepositoryBinding.root) {
 
       fun bind(repository: Repository) {
-            val repoName = itemView.findViewById<TextView>(R.id.repositoryName)
-            val repoDesc = itemView.findViewById<TextView>(R.id.repositoryDesc)
-
-            repoName.text = repository.fullName
-            repoDesc.text = repository.description
+            viewholderRepositoryBinding.repositoryName.text = repository.fullName
+            viewholderRepositoryBinding.repositoryDesc.text = repository.description
       }
 
 }
