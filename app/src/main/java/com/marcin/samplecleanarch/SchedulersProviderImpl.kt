@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SchedulersProviderImpl @Inject constructor() : SchedulersProvider {
 
-            override fun <O> createSingleTransformer(): SingleTransformer<O, O> {
+            override fun <O : Any> createSingleTransformer(): SingleTransformer<O, O> {
                         return SingleTransformer { it.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()) }
             }
 }

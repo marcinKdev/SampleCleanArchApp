@@ -4,5 +4,5 @@ import io.reactivex.rxjava3.core.SingleTransformer
 
 interface SchedulersProvider {
 
-fun <O>createSingleTransformer() : SingleTransformer<O, O>
+fun <O : Any>createSingleTransformer() : SingleTransformer<O, O>
 }
