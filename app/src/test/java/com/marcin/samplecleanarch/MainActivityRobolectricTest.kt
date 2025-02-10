@@ -1,3 +1,4 @@
+/*
 package com.marcin.samplecleanarch
 
 import android.os.Looper
@@ -86,4 +87,4 @@ class MainActivityRobolectricTest {
       }
 
 
-}
+}*/

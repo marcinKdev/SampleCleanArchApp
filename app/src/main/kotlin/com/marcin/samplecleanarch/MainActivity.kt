@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.Text
+import androidx.compose.runtime.collectAsState
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.marcin.RepositoriesAdapter
 import com.marcin.domain.MainScreenState
 import com.marcin.samplecleanarch.databinding.ActivityMainBinding
+import com.marcin.samplecleanarch.ui.GithubReposScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -19,49 +19,14 @@ class MainActivity : AppCompatActivity() {
 
       private val viewModel: MainViewModel by viewModels()
 
-      val repositoriesAdapter = RepositoriesAdapter()
-
-      internal lateinit var binding: ActivityMainBinding
-
       override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            binding = ActivityMainBinding.inflate(layoutInflater)
-            // setContentView(binding.root)
-
-            setContent {
-                  Text("Hello")
-            }
-
-            binding.tryAgainButton.setOnClickListener { viewModel.fetchRepos() }
-
-            lifecycleScope.launch {
-                  viewModel.state.collect { state ->
-                        renderState(state)
-                  }
-            }
 
             viewModel.fetchRepos()
 
-            binding.repositoriesRecycler.adapter = repositoriesAdapter
-
-            binding.repositoriesRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                  override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                        super.onScrollStateChanged(recyclerView, newState)
-
-                        if (recyclerView.canScrollVertically(1).not() && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                              viewModel.fetchReposFurtherPage()
-                        }
-                  }
-
-            })
-      }
-
-      internal fun renderState(state: MainScreenState) {
-            binding.progress.isVisible = state.loading || (state.repositories.isEmpty() && state.error == null)
-            binding.tryAgainButton.isVisible = state.error != null
-
-            if (state.repositories.isNotEmpty()) {
-                  repositoriesAdapter.submitList(state.repositories)
+            setContent {
+                  val uiState = viewModel.state.collectAsState().value
+                  GithubReposScreen(uiState, onTryAgainClicked = { viewModel.fetchRepos() }, onFetchMoreReposClicked = { viewModel.fetchReposFurtherPage() })
             }
       }
 }

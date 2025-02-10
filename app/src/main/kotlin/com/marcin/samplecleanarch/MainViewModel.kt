@@ -40,15 +40,15 @@ class MainViewModel @Inject constructor(private val getRepositoriesUseCase: GetR
       fun fetchReposFurtherPage() {
             page++
 
-            val currentRepos = _state.value?.repositories ?: emptyList()
+            val currentRepos = _state.value.repositories
 
-            _state.value = MainScreenState(repositories = currentRepos, loading = true)
+            _state.value = MainScreenState(repositories = currentRepos, loadingMore = true)
 
             viewModelScope.launch {
                   val result = getRepositoriesUseCase.execute(page)
 
                   when (result.isSuccess) {
-                        true -> _state.value = MainScreenState(repositories = currentRepos + result.getOrNull()!!)
+                        true -> _state.value = MainScreenState(repositories = currentRepos + result.getOrElse { listOf() })
                         else -> _state.value = MainScreenState(error = result.exceptionOrNull())
                   }
 

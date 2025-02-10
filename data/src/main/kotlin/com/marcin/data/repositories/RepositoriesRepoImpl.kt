@@ -11,11 +11,16 @@ class RepositoriesRepoImpl @Inject constructor(
       private val githubApiInterface: GithubApiInterface
 ) : RepositoriesRepo {
       override suspend fun fetchRepos(page: Int): Result<List<Repository>> {
-            val result = githubApiInterface.getRepos(page)
+            try {
+                  val result = githubApiInterface.getRepos(page)
 
-            return withContext(Dispatchers.IO) {
-                  if (result.isSuccessful) Result.success(result.body()?.items ?: listOf())
-                  else Result.failure(Exception())
+                  return withContext(Dispatchers.IO) {
+                        if (result.isSuccessful) Result.success(result.body()?.items ?: listOf())
+                        else Result.failure(Exception())
+                  }
+            } catch (e: Exception) {
+                  return Result.failure(e)
             }
       }
+
 }
