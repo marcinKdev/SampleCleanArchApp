@@ -1,16 +1,16 @@
 package com.marcin.data.repositories
 
 import com.marcin.data.GithubApiInterface
-import com.marcin.domain.RepositoriesRepo
-import com.marcin.domain.Repository
+import com.marcin.domain.GithubRepositoriesRepo
+import com.marcin.domain.GithubRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class RepositoriesRepoImpl @Inject constructor(
+class GithubRepositoriesRepoImpl @Inject constructor(
       private val githubApiInterface: GithubApiInterface
-) : RepositoriesRepo {
-      override suspend fun fetchRepos(page: Int): Result<List<Repository>> {
+) : GithubRepositoriesRepo {
+      override suspend fun fetchRepos(page: Int): Result<List<GithubRepository>> {
             try {
                   val result = githubApiInterface.getRepos(page)
 

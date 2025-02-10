@@ -1,24 +1,24 @@
 package com.marcin.testdata
 
-import com.marcin.domain.Repository
+import com.marcin.domain.GithubRepository
 
 object RepositoriesTestData {
 
-      val repo1 = Repository(
+      val repo1 = GithubRepository(
             id = 3432266,
             name =  "kotlin",
             fullName = "JetBrains/kotlin",
             description = "The Kotlin Programming Language. "
       )
 
-      val repo2 = Repository(
+      val repo2 = GithubRepository(
             id = 91829561,
             name =  "KotlinUdemy",
             fullName = "hussien89aa/KotlinUdemy",
             description = "Learn how to make online games, and apps for Android O, like Pokémon , twitter,Tic Tac Toe, and notepad using Kotlin"
       )
 
-      val repo3 = Repository(
+      val repo3 = GithubRepository(
             id = 111071830,
             name =  "KotlinMvp",
             fullName = "git-xuhao/KotlinMvp",

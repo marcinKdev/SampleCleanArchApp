@@ -2,7 +2,7 @@ package com.marcin.samplecleanarch
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.marcin.domain.GetRepositoriesUseCase
+import com.marcin.domain.GetGithubRepositoriesUseCase
 import com.marcin.domain.MainScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val getRepositoriesUseCase: GetRepositoriesUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(private val getGithubRepositoriesUseCase: GetGithubRepositoriesUseCase) : ViewModel() {
 
       internal var page = 1
 
@@ -25,7 +25,7 @@ class MainViewModel @Inject constructor(private val getRepositoriesUseCase: GetR
             _state.value = MainScreenState(repositories = currentRepos, loading = true)
 
             viewModelScope.launch {
-                  val result = getRepositoriesUseCase.execute()
+                  val result = getGithubRepositoriesUseCase.execute()
 
                   when (result.isSuccess) {
                         true -> _state.value = MainScreenState(repositories = result.getOrNull()!!)
@@ -45,7 +45,7 @@ class MainViewModel @Inject constructor(private val getRepositoriesUseCase: GetR
             _state.value = MainScreenState(repositories = currentRepos, loadingMore = true)
 
             viewModelScope.launch {
-                  val result = getRepositoriesUseCase.execute(page)
+                  val result = getGithubRepositoriesUseCase.execute(page)
 
                   when (result.isSuccess) {
                         true -> _state.value = MainScreenState(repositories = currentRepos + result.getOrElse { listOf() })

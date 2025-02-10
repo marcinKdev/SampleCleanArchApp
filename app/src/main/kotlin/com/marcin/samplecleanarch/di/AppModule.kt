@@ -3,8 +3,8 @@ package com.marcin.samplecleanarch.di
 import com.google.gson.GsonBuilder
 import com.marcin.data.BASE_URL
 import com.marcin.data.GithubApiInterface
-import com.marcin.data.repositories.RepositoriesRepoImpl
-import com.marcin.domain.RepositoriesRepo
+import com.marcin.data.repositories.GithubRepositoriesRepoImpl
+import com.marcin.domain.GithubRepositoriesRepo
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 abstract class AppModule {
 
       @Binds
-      abstract fun provideRepositoriesRepo(repositoriesRepoImpl: RepositoriesRepoImpl): RepositoriesRepo
+      abstract fun provideRepositoriesRepo(repositoriesRepoImpl: GithubRepositoriesRepoImpl): GithubRepositoriesRepo
 
       companion object {
 
