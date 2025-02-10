@@ -48,8 +48,6 @@ dependencies {
     // Retrofit and networking
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
-    api("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
-    api("io.reactivex.rxjava3:rxandroid:3.0.0")
     api("com.google.code.gson:gson:2.8.6")
     api("com.squareup.okhttp3:okhttp:4.9.0")
     api("com.squareup.okhttp3:okhttp-urlconnection:4.9.0")
