@@ -1,37 +1,30 @@
 package com.marcin.samplecleanarch
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.marcin.RepositoriesAdapter
 import com.marcin.domain.MainScreenState
 import com.marcin.samplecleanarch.databinding.ActivityMainBinding
-import com.marcin.samplecleanarch.di.ViewModelFactory
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-      @Inject
-      lateinit var vmFactory: ViewModelFactory<MainViewModel>
-
-      lateinit var viewModel: MainViewModel
+      private val viewModel: MainViewModel by viewModels()
 
       val repositoriesAdapter = RepositoriesAdapter()
 
       internal lateinit var binding: ActivityMainBinding
 
       override fun onCreate(savedInstanceState: Bundle?) {
-            AndroidInjection.inject(this)
             super.onCreate(savedInstanceState)
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
             binding.tryAgainButton.setOnClickListener { viewModel.fetchRepos() }
-
-            viewModel = ViewModelProvider(this, vmFactory).get(MainViewModel::class.java)
 
             viewModel.state.observe(this, {
                   renderState(it)
@@ -57,6 +50,8 @@ class MainActivity : AppCompatActivity() {
             binding.progress.isVisible = state.loading || (state.repositories.isEmpty() && state.error == null)
             binding.tryAgainButton.isVisible = state.error != null
 
-            if (state.repositories.isNotEmpty()) { repositoriesAdapter.submitList(state.repositories) }
+            if (state.repositories.isNotEmpty()) {
+                  repositoriesAdapter.submitList(state.repositories)
+            }
       }
 }

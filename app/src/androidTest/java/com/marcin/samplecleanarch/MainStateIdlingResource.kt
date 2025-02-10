@@ -25,7 +25,7 @@ class MainScreenStateIdlingResource() : IdlingResource, Observer<MainScreenState
         this.resourceCallback = resourceCallback
     }
 
-    override fun onChanged(state: MainScreenState?) {
+    override fun onChanged(state: MainScreenState) {
         idle = state?.repositories?.isNotEmpty() == true
     }
 }

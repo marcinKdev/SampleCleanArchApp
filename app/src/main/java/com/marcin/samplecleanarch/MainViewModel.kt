@@ -3,10 +3,14 @@ package com.marcin.samplecleanarch
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.marcin.domain.GetRepositioriesUseCase
 import com.marcin.domain.MainScreenState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(private val getRepositioriesUseCase: GetRepositioriesUseCase) : ViewModel() {
 
       internal var page = 1
@@ -20,11 +24,17 @@ class MainViewModel @Inject constructor(private val getRepositioriesUseCase: Get
 
             _state.value = MainScreenState(repositories = currentRepos, loading = true)
 
-            getRepositioriesUseCase.execute()
-                  .subscribe(
-                        { _state.value = MainScreenState(repositories = it) },
-                        { _state.value = MainScreenState(error = it) }
-                  )
+            viewModelScope.launch {
+                  val result = getRepositioriesUseCase.execute()
+
+                  when (result.isSuccess) {
+                        true -> _state.value = MainScreenState(repositories = result.getOrNull()!!)
+                        else -> _state.value = MainScreenState(error = result.exceptionOrNull())
+                  }
+
+            }
+
+
       }
 
       fun fetchReposFurtherPage() {
@@ -34,11 +44,15 @@ class MainViewModel @Inject constructor(private val getRepositioriesUseCase: Get
 
             _state.value = MainScreenState(repositories = currentRepos, loading = true)
 
-            getRepositioriesUseCase.execute(page)
-                  .subscribe(
-                        { _state.value = MainScreenState(repositories = currentRepos + it) },
-                        { _state.value = MainScreenState(error = it) }
-                  )
+            viewModelScope.launch {
+                  val result = getRepositioriesUseCase.execute(page)
+
+                  when (result.isSuccess) {
+                        true -> _state.value = MainScreenState(repositories = currentRepos + result.getOrNull()!!)
+                        else -> _state.value = MainScreenState(error = result.exceptionOrNull())
+                  }
+
+            }
       }
 
 }

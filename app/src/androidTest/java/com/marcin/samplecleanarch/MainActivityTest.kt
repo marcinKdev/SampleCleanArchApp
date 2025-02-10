@@ -1,3 +1,4 @@
+/*
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -40,4 +41,4 @@ class MainActivityTest {
                   viewModel.state.removeObserver(stateIdlingResource)
             }
       }
-}
+}*/

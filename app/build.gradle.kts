@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -40,15 +41,19 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
     implementation(project(":data"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.fragment:fragment-ktx:1.3.3")
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.2.1")
     implementation("androidx.constraintlayout:constraintlayout:2.0.1")
     testImplementation("junit:junit:4.+")
@@ -63,9 +68,7 @@ dependencies {
 
     testImplementation("org.robolectric:robolectric:4.5")
 
-    // Dagger
-    implementation("com.google.dagger:dagger:2.54")
-    implementation("com.google.dagger:dagger-android:2.49")
-    kapt("com.google.dagger:dagger-compiler:2.49")
-    kapt("com.google.dagger:dagger-android-processor:2.49")
+    //hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }

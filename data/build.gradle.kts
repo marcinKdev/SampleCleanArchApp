@@ -37,7 +37,7 @@ dependencies {
     api(project(":domain"))
     api(project(":testData"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
     implementation("androidx.core:core-ktx:1.3.1")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.2.1")
@@ -53,8 +53,4 @@ dependencies {
     api("com.google.code.gson:gson:2.8.6")
     api("com.squareup.okhttp3:okhttp:4.9.0")
     api("com.squareup.okhttp3:okhttp-urlconnection:4.9.0")
-
-    // Dagger
-    api("com.google.dagger:dagger:2.35.1")
-    kapt("com.google.dagger:dagger-compiler:2.35.1")
 }

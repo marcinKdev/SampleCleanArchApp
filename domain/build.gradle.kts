@@ -9,7 +9,7 @@ java {
 }
 
 dependencies {
-    api("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
-    api("io.reactivex.rxjava3:rxjava:3.0.0")
+    api("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
     api("javax.inject:javax.inject:1")
+    api(libs.kotlinx.coroutines.android)
 }

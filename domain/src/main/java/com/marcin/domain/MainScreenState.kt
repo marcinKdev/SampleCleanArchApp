@@ -1,7 +1,7 @@
 package com.marcin.domain
 
 data class MainScreenState(
-            val repositories: List<Repository> = emptyList(),
-            val loading: Boolean = false,
-            val error: Throwable? = null
+      val repositories: List<Repository> = listOf(),
+      val loading: Boolean = false,
+      val error: Throwable? = null
 )

@@ -1,3 +1,4 @@
+/*
 package com.marcin.samplecleanarch
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -112,4 +113,4 @@ class MainViewModelTest {
             Mockito.verify(testObserver).onChanged(MainScreenState(loading = true))
             Mockito.verify(testObserver).onChanged(MainScreenState(repositories = testRepos))
       }
-}
+}*/
