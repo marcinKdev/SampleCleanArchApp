@@ -4,11 +4,13 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.marcin.RepositoriesAdapter
 import com.marcin.domain.MainScreenState
 import com.marcin.samplecleanarch.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -26,9 +28,11 @@ class MainActivity : AppCompatActivity() {
 
             binding.tryAgainButton.setOnClickListener { viewModel.fetchRepos() }
 
-            viewModel.state.observe(this, {
-                  renderState(it)
-            })
+            lifecycleScope.launch {
+                  viewModel.state.collect { state ->
+                        renderState(state)
+                  }
+            }
 
             viewModel.fetchRepos()
 
