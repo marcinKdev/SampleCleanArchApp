@@ -1,8 +1,10 @@
 package com.marcin.samplecleanarch
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Text
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +26,11 @@ class MainActivity : AppCompatActivity() {
       override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+            // setContentView(binding.root)
+
+            setContent {
+                  Text("Hello")
+            }
 
             binding.tryAgainButton.setOnClickListener { viewModel.fetchRepos() }
 
