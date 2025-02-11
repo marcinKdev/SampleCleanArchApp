@@ -26,10 +26,6 @@ class MainViewModelTest {
       @Mock
       private lateinit var usecase: GetGithubRepositoriesUseCase
 
-
-      private val testRepos = listOf(RepositoriesTestData.repo1, RepositoriesTestData.repo2, RepositoriesTestData.repo3)
-      private val testReposSecondPage = testRepos.take(2)
-
       @BeforeEach
       fun setup() {
             MockitoAnnotations.openMocks(this)

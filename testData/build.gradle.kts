@@ -9,5 +9,5 @@ java {
 
 dependencies {
     implementation(project(":domain"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
+    implementation(libs.kotlin.stdlib)
 }
