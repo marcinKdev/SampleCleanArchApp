@@ -28,7 +28,7 @@ class MainViewModel @Inject constructor(private val getGithubRepositoriesUseCase
                   val result = getGithubRepositoriesUseCase.execute()
 
                   when (result.isSuccess) {
-                        true -> _state.value = MainScreenState(repositories = result.getOrNull()!!)
+                        true -> _state.value = MainScreenState(repositories = result.getOrElse { listOf() })
                         else -> _state.value = MainScreenState(error = result.exceptionOrNull())
                   }
 

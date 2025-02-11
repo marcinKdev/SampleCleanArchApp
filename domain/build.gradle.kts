@@ -13,8 +13,8 @@ tasks.test {
 }
 
 dependencies {
-    api("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
-    api("javax.inject:javax.inject:1")
+    implementation(libs.kotlin.stdlib)
+    api(libs.javax.inject)
     api(libs.kotlinx.coroutines.android)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockito.core)
