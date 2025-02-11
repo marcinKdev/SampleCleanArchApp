@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    alias(libs.plugins.android.junit5)
 }
 
 android {
@@ -51,4 +52,10 @@ dependencies {
     api("com.google.code.gson:gson:2.8.6")
     api("com.squareup.okhttp3:okhttp:4.9.0")
     api("com.squareup.okhttp3:okhttp-urlconnection:4.9.0")
+
+
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
 }
