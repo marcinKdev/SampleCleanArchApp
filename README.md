@@ -11,10 +11,13 @@ The app is using:
 It does not have any fancy UI elements, it's rather an architectural showcase.
 
 Regular screen:
-![image](https://github.com/user-attachments/assets/11e5beac-c663-48c7-b625-b9614dad3c84)
+<br>
+<img src="https://github.com/user-attachments/assets/11e5beac-c663-48c7-b625-b9614dad3c84" width=337 height=600>
 
 Error screen:
-![image](https://github.com/user-attachments/assets/c5fa9fdc-d51b-4e5c-9185-283873ab683f)
+<br>
+<img src="https://github.com/user-attachments/assets/c5fa9fdc-d51b-4e5c-9185-283873ab683f" width=337 height=600>
 
 UI tests:
+<br>
 ![Screenshot 2025-02-11 at 13 29 07](https://github.com/user-attachments/assets/1e97e78b-09f9-42ad-9407-df48fe4a1c6a)
