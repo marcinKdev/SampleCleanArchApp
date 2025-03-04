@@ -35,7 +35,8 @@ import com.marcin.samplecleanarch.R
 fun GithubReposScreen(
       state: MainScreenState,
       onTryAgainClicked: () -> Unit = {},
-      onFetchMoreReposClicked: () -> Unit = {}
+      onFetchMoreReposClicked: () -> Unit = {},
+      onNavigateToRepoDetails: () -> Unit
 ) {
       val listState = rememberLazyListState()
       val buffer = 1
@@ -72,7 +73,7 @@ fun GithubReposScreen(
                   else -> {
                         LazyColumn(state = listState) {
                               state.repositories.forEachIndexed { index, it ->
-                                    item { RepositoryCard(index.toString(), it.description.orEmpty()) }
+                                    item { RepositoryCard(index.toString(), it.description.orEmpty(), onNavigateToRepoDetails) }
                               }
                         }
 
@@ -92,13 +93,14 @@ fun GithubReposScreen(
 }
 
 @Composable
-fun RepositoryCard(repositoryName: String, repositoryDesc: String) {
+fun RepositoryCard(repositoryName: String, repositoryDesc: String, onNavigateToRepoDetails: () -> Unit = {}) {
       Card(
             modifier = Modifier
                   .fillMaxWidth()
                   .padding(10.dp),
             shape = RoundedCornerShape(8.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+            onClick = { onNavigateToRepoDetails() }
       ) {
             Column(
                   modifier = Modifier
@@ -129,5 +131,5 @@ fun RepositoryCard(repositoryName: String, repositoryDesc: String) {
 @Composable
 fun ReposPreview() {
       val stateLoading = MainScreenState(loading = true)
-      GithubReposScreen(stateLoading)
+      GithubReposScreen(stateLoading, onNavigateToRepoDetails = {})
 }

@@ -5,6 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.marcin.samplecleanarch.ui.GithubRepoDetailScreen
+import com.marcin.samplecleanarch.ui.GithubRepoDetails
+import com.marcin.samplecleanarch.ui.GithubRepos
 import com.marcin.samplecleanarch.ui.GithubReposScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,10 +26,23 @@ class MainActivity : ComponentActivity() {
 
             setContent {
                   val uiState = viewModel.state.collectAsState().value
-                  GithubReposScreen(
-                        uiState,
-                        onTryAgainClicked = { viewModel.fetchRepos() },
-                        onFetchMoreReposClicked = { viewModel.fetchReposFurtherPage() })
+
+                  val navController = rememberNavController()
+
+                  NavHost(
+                        navController = navController,
+                        startDestination = GithubRepos
+                  ) {
+                        composable<GithubRepos> {
+                              GithubReposScreen(
+                                    uiState,
+                                    onTryAgainClicked = { viewModel.fetchRepos() },
+                                    onFetchMoreReposClicked = { viewModel.fetchReposFurtherPage() },
+                                    onNavigateToRepoDetails = { navController.navigate(route = GithubRepoDetails) }
+                              )
+                        }
+                        composable<GithubRepoDetails> { GithubRepoDetailScreen() }
+                  }
             }
       }
 }

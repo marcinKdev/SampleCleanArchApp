@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.junit5)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -62,6 +63,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.runtime)
+    implementation(libs.navigatiion.compose)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.ui.tooling.preview.android)
     implementation(libs.androidx.ui.tooling)
