@@ -3,7 +3,7 @@ kotlin = "2.1.10"
 coroutines = "1.10.1"
 hilt = "2.55"
 androidxActivity = "1.10.1"
-androidxComposeBom = "2025.02.00"
+androidxComposeBom = "2025.03.00"
 uiToolingPreviewAndroid = "1.7.8"
 composeRuntime = "1.7.8"
 junitJupiter = "5.8.1"
@@ -18,8 +18,9 @@ gson = "2.10.1"
 okhttp = "4.12.0"
 okhttp-urlconnection = "4.10.0"
 javax_inject = "1"
-nav_version = "2.8.8"
+nav_version = "2.8.9"
 kotlinx-serialization-json = "1.8.0"
+
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
@@ -48,9 +49,13 @@ navigatiion_compose = { module = "androidx.navigation:navigation-compose", versi
 kotlinx_serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 
 [plugins]
+android-application = { id = "com.android.application" }
+android-library = { id = "com.android.library" }
+kotlin-android = { id = "org.jetbrains.kotlin.android" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android-junit5-plugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-
-
+kotlin = { id = "org.jetbrains.kotlin.jvm" }
+java-library = { id = "java-library" }
